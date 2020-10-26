@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap");
+
+/*
+
+Theme Name: WP_Jude
+Theme URI : judetejada.me
+Author: Jude Tejada
+Description: My Own Custom theme
+tags: wordpress_theme
+License: GNU General Public License
+Version: 1.1
+
+*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+header.header-area {
+  background: #fff;
+  color: black;
+  margin: 0;
+  text-align: center;
+}
+
+header.header-area h1 a {
+  font-size: 28px;
+}
+
+header.header-area h3 {
+  font-size: 16px;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#main .post-area .post-meta ul {
+  list-style-type: none;
+  display: inline-block;
+}
+
+nav.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+nav.nav ul {
+  display: flex;
+}
+
+nav.nav ul li {
+  padding: 0 0.7em;
+}

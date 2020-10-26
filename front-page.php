@@ -2,7 +2,7 @@
 
 
 <section class="page-wrap">
-</section>
+
 
 
 
@@ -11,13 +11,13 @@
         <?php the_title();?>
     </h1>
 
-<div>
-<?php 
-    //pull our own theme file
-    get_template_part('includes/section', 'content');?>
-</div>
-   
-</div>
 
+<?php   get_template_part('includes/section', 'content');?>
+
+<?php get_search_form();?>
+
+
+</div>
+</section>
 
 <?php  get_footer();?>

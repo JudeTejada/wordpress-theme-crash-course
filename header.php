@@ -18,7 +18,6 @@
 
             array(
                 'top-menu' =>  'Top Menu Location',
-
                 'menu_class' => 'top-bar'
             )
 

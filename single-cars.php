@@ -23,7 +23,19 @@
 
             </div>
 
-        <div class="col-lg-6"></div>
+            <div class="col-lg-6">
+
+            
+            <?php  get_template_part('includes/form', 'enquiry')?>
+            
+                    <ul>
+                        <li> Color : <?php the_field('color');?></li>
+                        <li> Registration : <?php the_field('registration');?></li>
+
+                     
+                    </ul>
+
+            </div>
 
         </div>
 

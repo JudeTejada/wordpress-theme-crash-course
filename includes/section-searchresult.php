@@ -31,7 +31,7 @@
             no result found for  <?php echo get_search_query();?>
         </h1>
 
-      <?php endif ?>
+      <?php  endif ?>
 
 
   

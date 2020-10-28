@@ -1,9 +1,15 @@
 <?php 
 //adding css and js scripts
 function load_scripts(){
-    wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array(). 'all');
-    wp_enqueue_style( 'main', get_stylesheet_directory_uri() . '/css/main.css', array(). 'all');
+    // wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array(). 'all');
+    // wp_enqueue_style( 'current', get_stylesheet_directory_uri());
+    // wp_enqueue_style( 'main', get_stylesheet_directory_uri() . '/css/main.css', array(). 'all');
+    wp_enqueue_style('style', get_template_directory_uri() . '/dist/app.css', [], 1, 'all');
+
+    
     wp_enqueue_script('main', get_template_directory_uri().'/js/bootstrap.min.js','',false,true);
+    wp_enqueue_script('app', get_template_directory_uri().'/dist/app.js',[],1,true);
+
     wp_enqueue_script('jquery');
 }
 
@@ -173,6 +179,16 @@ function enquiry_form(){
 
 
 
+/**
+ * Register Custom Navigation Walker
+ */
+function register_navwalker(){
+	require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
+
+
+add_action('phpmailer_init','custom_mailer');
 
 
 
@@ -180,12 +196,19 @@ function enquiry_form(){
 
 
 
+//add dynamic content in the visual editor
+function my_shortcode(){
+    // stop and don't to anything yet
+    ob_start();
+     get_template_part('includes/latest', 'cars');
+     //return the  echoed data afterwards
+    return ob_get_clean();
+}
 
 
 
-
-
-
+// [latest_cars]
+add_shortcode('latest_cars', 'my_shortcode');
 
 
 

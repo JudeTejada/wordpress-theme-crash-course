@@ -214,8 +214,93 @@ add_shortcode('latest_cars', 'my_shortcode');
 
 
 
+function telephoneNumber(){
+    return '0999 333 222';
+}
+
+add_shortcode('phone-number','telephoneNumber');
 
 
+
+
+function search_query(){
+
+    $paged = ( get_query_var('paged') ) ?  get_query_var('paged') : 1;
+    
+
+
+    $args = [
+        'paged' => $paged,
+        'post_type ' => 'cars',
+        'posts_per_page' => 1,
+        'tax_query' => [],  
+        'meta-query' => [
+                'relation' =>'AND'
+        ],
+    ];   
+    //if keyword exist in the GET request
+    if ( isSet($_GET['keyword']) ) 
+    {   
+        //if keyword is not empty 
+        if(!empty($_GET['keyword'])){
+            $args['s'] = sanitize_text_field($_GET['keyword']);
+        }
+    }
+
+    if( isSet($_GET['brand']))
+    {
+        if(!empty($_GET['brand'])){
+
+            $args['tax_query'][] = [
+
+                'taxonomy' =>'brands',
+                'field' => 'slug',
+                'terms' =>array(  sanitize_text_field($_GET['brand'])),
+            ];  
+        }
+    }
+
+
+    if( isSet($_GET['price_above']))
+    {
+        if(!empty($_GET['price_above'])){
+
+            $args['meta_query'][] = array(
+
+                'key' => 'price',
+                'value' => sanitize_text_field( $_GET['price_above']),
+                'type' => 'numeric',
+                'compare' => '>=',
+
+            );
+
+
+        }
+    }
+
+
+
+    if( isSet($_GET['price_below']))
+    {
+        if(!empty($_GET['price_below'])){
+
+            $args['meta_query'][] = array(
+
+                'key' => 'price',
+                'value' => sanitize_text_field( $_GET['price_below']),
+                'type' => 'numeric',
+                'compare' => '<=',
+
+            );
+
+
+        }
+    }
+
+
+    return  new WP_Query($args);
+
+}
 
 
 
